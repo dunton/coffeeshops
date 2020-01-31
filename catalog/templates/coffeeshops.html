@@ -1,0 +1,61 @@
+<!--coffeeshop page for logged in users-->
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right">
+					</div>
+	</div>
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Coffeeshops</h1>
+		</div>
+	</div>
+
+<div class = 'flash'>
+	<!--Gather all flash messages-->
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+	<!--Add coffeeshop button-->
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 padding-none">
+			<a href="{{url_for('newCoffeeshop')}}">
+				<button class="btn btn-default" id="new-restaurant">
+					<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Coffee Shop
+				</button>
+			</a>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	<!--List coffeeshop names-->
+	{% for coffeeshop in coffeeshops %}
+		<a href = "{{url_for('coffeeshopMenu', coffeeshop_id = coffeeshop.id)}}">
+			<div class="row">
+				<div class="col-md-1"></div>
+					<div class="col-md-10 restaurant-list">
+						<h3>{{coffeeshop.name}}</h3>
+					</br>
+					
+					</div>
+				<div class="col-md-1"></div>
+			</div>
+		</a>
+		<!--end for loop-->
+	{% endfor %}
+{% endblock %}

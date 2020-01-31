@@ -1,0 +1,23 @@
+<!--Create header for display on all pages-->
+<div class="row top-menu">
+	<div class="col-md-6">
+		<!--Link to homepage-->
+		<a href="{{url_for('showCoffeeshops')}}">
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+			Show All Coffee Shops
+		</a>
+	</div>
+	<!--Toggle to allow user to login or logout-->
+	<div class="col-md-6 text-right">
+			{% if 'username' not in session %}
+			<a href="{{url_for('showLogin')}}">
+				Click Here to Login 
+			</a>
+			{% else %}
+			<a href="{{url_for('disconnect')}}">
+				Logout 
+			</a>
+			{% endif %}
+		
+	</div>
+</div>
